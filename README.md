@@ -31,14 +31,19 @@ Example:
 
     $hostlist = $facts->nodelist('uptime_days','1000','>');
 
-The results will be returned in an array:
+The results will be returned as json:
+
+    ["vmhost-01.hostna.me","vmhost-02.hostna.me","vmhost-03.hostna.me"]
+
+If you want the results returned as a PHP array you can specify json to be false:
+
+    $hostlist = $facts->nodelist('uptime_days','1000','>',false);
 
     Array
     (
         [0] => vmhost-01.hostna.me
         [1] => vmhost-02.hostna.me
         [2] => vmhost-03.hostna.me
-        [3] => vmhost-04.hostna.me
     )
 
 ##### nodefacts
@@ -51,7 +56,13 @@ Example:
 
     $serverfacts = $facts->nodefacts($server,"operatingsystem,osfamily,uptime_days,hardwaremodel,physicalprocessorcount,timezone,productname");
 
-The results will be returned in an array:
+The results will be returned as json:
+
+    {"operatingsystem":"CentOS","osfamily":"RedHat","uptime_days":"295","hardwaremodel":"x86_64","physicalprocessorcount":"2","timezone":"GMT","productname":"PowerEdge R610"}
+
+If you want the results returned as a PHP array you can specify json to be false:
+
+    $serverfacts = $facts->nodefacts($server,"operatingsystem,osfamily,uptime_days,hardwaremodel,physicalprocessorcount,timezone,productname",false);
 
     Array
     (

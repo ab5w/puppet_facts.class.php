@@ -25,7 +25,7 @@ class puppet_facts {
 
     }
 
-    public function nodelist($fact,$value,$operator) {
+    public function nodelist($fact,$value,$operator,$json = true) {
 
         $query = '["and", ["=", "name", "fqdn"], ["in", "certname", ["extract", "certname", ["select-facts", ["and", ["=", "name", "'. $fact .'"], ["'. $operator .'", "value", "'. $value .'"]]]]]]';
         $query = "facts?query=" . urlencode($query);
@@ -38,11 +38,19 @@ class puppet_facts {
 
         }
 
-        return $hosts;
+        if ($json) {
+
+            return json_encode($hosts);
+
+        } else {
+
+            return $hosts;
+
+        }
 
     }
 
-    public function nodefacts($server,$facts) {
+    public function nodefacts($server,$facts,$json = true) {
 
         $facts = explode(",", $facts);
         $facts = array_filter($facts);
@@ -71,7 +79,15 @@ class puppet_facts {
 
         $nodefacts = array_combine($facts, $nodefacts);
 
-        return $nodefacts;
+        if ($json) {
+
+            return json_encode($nodefacts);
+
+        } else {
+
+            return $nodefacts;
+
+        }
 
     }
 

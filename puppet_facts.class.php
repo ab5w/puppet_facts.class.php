@@ -25,6 +25,23 @@ class puppet_facts {
 
     }
 
+    public function nodelist($fact,$value,$operator) {
+
+        $query = '["and", ["=", "name", "fqdn"], ["in", "certname", ["extract", "certname", ["select-facts", ["and", ["=", "name", "'. $fact .'"], ["'. $operator .'", "value", "'. $value .'"]]]]]]';
+        $query = "facts?query=" . urlencode($query);
+
+        $results = $this->puppetdb_query($query);
+
+        foreach($results as $host) {
+
+            $hosts[] = $host['certname'];
+
+        }
+
+        return $hosts;
+
+    }
+
     public function nodefacts($server,$facts) {
 
         $facts = explode(",", $facts);

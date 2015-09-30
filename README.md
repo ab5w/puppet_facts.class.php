@@ -9,7 +9,7 @@ Currently a work in progress as I convert my functions to the class.
 
     <?php
 
-    $puppetdb = 'https://puppetserver.hostna.me:8080';
+    $puppetdb = 'https://puppetserver.serverhostna.me:8080';
 
     $facts = new puppet_facts($puppetdb);
 
@@ -33,7 +33,7 @@ Example:
 
 The results will be returned as json:
 
-    ["vmhost-01.hostna.me","vmhost-02.hostna.me","vmhost-03.hostna.me"]
+    ["vmhost-01.serverhostna.me","vmhost-02.serverhostna.me","vmhost-03.serverhostna.me"]
 
 If you want the results returned as a PHP array you can specify json to be false:
 
@@ -41,9 +41,9 @@ If you want the results returned as a PHP array you can specify json to be false
 
     Array
     (
-        [0] => vmhost-01.hostna.me
-        [1] => vmhost-02.hostna.me
-        [2] => vmhost-03.hostna.me
+        [0] => vmhost-01.serverhostna.me
+        [1] => vmhost-02.serverhostna.me
+        [2] => vmhost-03.serverhostna.me
     )
 
 ##### nodefacts
